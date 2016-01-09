@@ -6,6 +6,9 @@
       - vim
       - git
       - tor
+      - clang
+      - libevent-devel
+      - ncurses-devel
   tasks:
     - name: Install packages
       sudo: yes
