@@ -10,6 +10,7 @@
       - clang
       - libevent-devel
       - ncurses-devel
+      - bison
     pip_packages:
       - ansible
   tasks:
