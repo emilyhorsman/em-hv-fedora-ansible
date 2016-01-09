@@ -10,6 +10,8 @@
       - clang
       - libevent-devel
       - ncurses-devel
+    pip_packages:
+      - ansible
   tasks:
     - name: Install packages
       sudo: yes
@@ -18,3 +20,9 @@
     - name: Enable and start tor
       sudo: yes
       service: name=tor enabled=yes state=started
+    - name: Install system pip packages
+      sudo: yes
+      pip: name={{ item }}
+      with_items: pip_packages
+    - name: Hush login
+      file: path=~/.hushlogin state=touch
