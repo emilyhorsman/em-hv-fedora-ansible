@@ -10,3 +10,5 @@
     - name: Install packages
       dnf: name={{ item }} state=present
       with_items: packages
+    - name: Install tmux from abstractj
+      dnf: enablerepo=abstractj/tmux state=latest name=tmux
