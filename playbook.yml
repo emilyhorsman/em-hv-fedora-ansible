@@ -1,0 +1,12 @@
+---
+- hosts: all
+  sudo: yes
+  vars:
+    packages:
+      - htop
+      - vim
+      - git
+  tasks:
+    - name: Install packages
+      dnf: name={{ item }} state=present
+      with_items: packages
