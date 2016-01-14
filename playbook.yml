@@ -14,17 +14,32 @@
       - openssl-devel
     pip_packages:
       - ansible
+    services:
+      - tor
+      - postgresql
   tasks:
     - name: Install packages
       sudo: yes
       dnf: name={{ item }} state=present
       with_items: packages
-    - name: Enable and start tor
-      sudo: yes
-      service: name=tor enabled=yes state=started
     - name: Install system pip packages
       sudo: yes
       pip: name={{ item }}
       with_items: pip_packages
     - name: Hush login
       file: path=~/.hushlogin state=touch
+    - name: Install postgresql
+      sudo: yes
+      dnf: name={{ item }} state=present
+      with_items:
+        - postgresql-contrib
+        - postgresql-server
+      register: postgresql
+    - name: Configure postgresql
+      sudo: yes
+      command: postgresql-setup initdb
+      when: postgresql.changed
+    - name: Enable and start services
+      sudo: yes
+      service: name={{ item }} enabled=yes state=started
+      with_items: services
