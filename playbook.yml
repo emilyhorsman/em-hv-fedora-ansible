@@ -11,6 +11,7 @@
       - libevent-devel
       - ncurses-devel
       - bison
+      - openssl-devel
     pip_packages:
       - ansible
   tasks:
