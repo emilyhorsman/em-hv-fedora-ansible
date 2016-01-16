@@ -12,6 +12,7 @@
       - ncurses-devel
       - bison
       - openssl-devel
+      - urlview
     pip_packages:
       - ansible
     services:
