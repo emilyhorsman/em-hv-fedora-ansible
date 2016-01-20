@@ -13,36 +13,36 @@
       - bison
       - openssl-devel
       - urlview
-    pip_packages:
-      - ansible
-      - virtualenv
-      - virtualenvwrapper
-    services:
-      - tor
-      - postgresql
   tasks:
     - name: Install packages
-      sudo: yes
+      become: yes
       dnf: name={{ item }} state=present
       with_items: packages
-    - name: Install system pip packages
-      sudo: yes
-      pip: name={{ item }}
-      with_items: pip_packages
+    - name: Install system ansible
+      become: yes
+      pip: name=ansible
+    - name: Install virtualenv
+      become: yes
+      pip: name=virtualenv
+    - name: Install virtualenvwrapper
+      become: yes
+      pip: name=virtualenvwrapper
     - name: Hush login
       file: path=~/.hushlogin state=touch
     - name: Install postgresql
-      sudo: yes
+      become: yes
       dnf: name={{ item }} state=present
       with_items:
         - postgresql-contrib
         - postgresql-server
       register: postgresql
     - name: Configure postgresql
-      sudo: yes
+      become: yes
       command: postgresql-setup initdb
       when: postgresql.changed
-    - name: Enable and start services
-      sudo: yes
-      service: name={{ item }} enabled=yes state=started
-      with_items: services
+    - name: Ensure tor enabled
+      become: yes
+      service: name=tor enabled=yes state=started
+    - name: Ensure postgresql enabled
+      become: yes
+      service: name=postgresql enabled=yes state=started
