@@ -13,6 +13,7 @@
       - bison
       - openssl-devel
       - urlview
+      - readline-devel
   tasks:
     - name: Install packages
       become: yes
