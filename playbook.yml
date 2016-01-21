@@ -62,3 +62,7 @@
       args:
         chdir: ~/.rbenv
       when: install_rbenv.changed
+    - name: Install ruby build
+      git:
+        repo: https://github.com/rbenv/ruby-build.git
+        dest: ~/.rbenv/plugins/ruby-build
