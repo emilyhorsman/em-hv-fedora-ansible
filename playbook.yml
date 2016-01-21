@@ -40,6 +40,12 @@
       become: yes
       command: postgresql-setup initdb
       when: postgresql.changed
+    - name: Install postgres dev packages
+      become: yes
+      dnf: name={{ item }} state=present
+      with_items:
+        - postgresql-devel
+        - postgresql-libs
     - name: Ensure tor enabled
       become: yes
       service: name=tor enabled=yes state=started
