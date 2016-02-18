@@ -15,6 +15,9 @@
       - urlview
       - readline-devel
       - libyaml-devel
+      - php
+      - php-mysql
+      - mysql
   tasks:
     - name: Install packages
       become: yes
