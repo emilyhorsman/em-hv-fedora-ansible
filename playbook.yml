@@ -58,17 +58,3 @@
     - name: Ensure postgresql enabled
       become: yes
       service: name=postgresql enabled=yes state=started
-    - name: Install rbenv
-      git:
-        repo: https://github.com/rbenv/rbenv.git
-        dest: ~/.rbenv
-      register: install_rbenv
-    - name: Compile rbenv bash extensions
-      command: src/configure && make -C src
-      args:
-        chdir: ~/.rbenv
-      when: install_rbenv.changed
-    - name: Install ruby build
-      git:
-        repo: https://github.com/rbenv/ruby-build.git
-        dest: ~/.rbenv/plugins/ruby-build
