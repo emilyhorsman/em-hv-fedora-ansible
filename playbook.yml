@@ -19,6 +19,8 @@
       - php-mysql
       - mysql
       - libjpeg-devel
+      - python-firewall
+      - dnsmasq
   tasks:
     - name: Install packages
       become: yes
@@ -58,3 +60,15 @@
     - name: Ensure postgresql enabled
       become: yes
       service: name=postgresql enabled=yes state=started
+    - name: Ensure .pxy TLD is configured in dnsmasq
+      become: yes
+      copy: src=proxy.conf dest=/etc/dnsmasq.d/proxy.conf
+    - name: Ensure dnsmasq enabled
+      become: yes
+      service: name=dnsmasq.service enabled=yes state=started
+    - name: Open port 53/tcp
+      become: yes
+      firewalld: port=53/tcp permanent=yes state=enabled immediate=yes
+    - name: Open port 53/udp
+      become: yes
+      firewalld: port=53/udp permanent=yes state=enabled immediate=yes
