@@ -62,7 +62,7 @@
       service: name=postgresql enabled=yes state=started
     - name: Ensure .pxy TLD is configured in dnsmasq
       become: yes
-      copy: src=proxy.conf dest=/etc/dnsmasq.d/proxy.conf
+      template: src=proxy.conf.j2 dest=/etc/dnsmasq.d/proxy.conf
     - name: Ensure dnsmasq enabled
       become: yes
       service: name=dnsmasq.service enabled=yes state=started
