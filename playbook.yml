@@ -21,6 +21,8 @@
       - libjpeg-devel
       - python-firewall
       - dnsmasq
+      - ImageMagick
+      - ImageMagick-devel
   tasks:
     - name: Install packages
       become: yes
