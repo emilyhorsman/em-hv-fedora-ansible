@@ -23,6 +23,7 @@
       - dnsmasq
       - ImageMagick
       - ImageMagick-devel
+      - httpie
   tasks:
     - name: Install packages
       become: yes
