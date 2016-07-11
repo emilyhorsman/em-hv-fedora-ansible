@@ -24,6 +24,7 @@
       - ImageMagick
       - ImageMagick-devel
       - httpie
+      - the_silver_searcher
   tasks:
     - name: Install packages
       become: yes
