@@ -2,6 +2,7 @@
 - hosts: all
   vars:
     packages:
+      - fish
       - htop
       - neovim
       - python2-neovim
@@ -11,7 +12,10 @@
   tasks:
     - name: Install packages
       become: yes
-      dnf: name={{ item }} state=present
+      dnf:
+        name: {{ item }}
+        state: present
+        enablerepo: 'http://download.opensuse.org/repositories/shells:fish:release:2/Fedora_24/shells:fish:release:2.repo'
       with_items: packages
     - name: Install system ansible
       become: yes
