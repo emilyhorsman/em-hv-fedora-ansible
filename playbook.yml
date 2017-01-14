@@ -13,6 +13,7 @@
       - git
       - the_silver_searcher
       - xrdp
+      - sway
     ansible_python_interpreter: "/usr/bin/python3"
   tasks:
     - name: Ensure fastestmirror
@@ -66,3 +67,5 @@
       service: name=xrdp enabled=yes state=started
     - name: Allow xrdp firewall access
       firewalld: port=3389/tcp permanent=true state=enabled immediate=yes
+    - name: Configure xrdp to use sway
+      copy: src=startwm.sh dest=/etc/xrdp/startwm.sh
