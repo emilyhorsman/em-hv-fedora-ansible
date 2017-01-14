@@ -9,6 +9,7 @@
       - python3-neovim
       - git
       - the_silver_searcher
+    ansible_python_interpreter: "/usr/bin/python3"
   tasks:
     - name: Install packages
       become: yes
