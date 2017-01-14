@@ -5,7 +5,7 @@
       - htop
       - neovim
       - python2-neovim
-      - python3-enovim
+      - python3-neovim
       - git
       - the_silver_searcher
   tasks:
