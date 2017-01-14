@@ -69,3 +69,7 @@
       firewalld: port=3389/tcp permanent=true state=enabled immediate=yes
     - name: Configure xrdp to use sway
       copy: src=startwm.sh dest=/etc/xrdp/startwm.sh
+    - name: Add user
+      user: name=emily group=wheel shell=/usr/bin/fish
+    - name: Add ssh key to user
+      authorized_key: user=emily state=present key="{{ lookup('file', lookup('env', 'HOME') + '/.ssh/id_ed25519_emh.pub') }}"
