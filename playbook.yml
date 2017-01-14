@@ -16,7 +16,7 @@
       dnf:
         name: "{{ item }}"
         state: present
-        enablerepo: 'http://download.opensuse.org/repositories/shells:fish:release:2/Fedora_24/shells:fish:release:2.repo'
+        enablerepo: "http://download.opensuse.org/repositories/shells:fish:release:2/Fedora_24/shells:fish:release:2.repo"
       with_items: packages
     - name: Install system ansible
       become: yes
