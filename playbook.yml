@@ -14,6 +14,12 @@
       - the_silver_searcher
     ansible_python_interpreter: "/usr/bin/python3"
   tasks:
+    - name: Ensure fastestmirror
+      become: yes
+      lineinfile:
+        dest: /etc/dnf/dnf.conf
+        regexp: '^fastestmirror'
+        line: 'fastestmirror=true'
     - name: Install packages
       become: yes
       dnf:
