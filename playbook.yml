@@ -35,9 +35,9 @@
     - name: Install virtualenv
       become: yes
       pip: name=virtualenv
-    - name: Install virtualenvwrapper
+    - name: Install virtualfish
       become: yes
-      pip: name=virtualenvwrapper
+      pip: name=virtualfish
     - name: Hush login
       file: path=~/.hushlogin state=touch
     - name: Install postgresql
