@@ -3,27 +3,10 @@
   vars:
     packages:
       - htop
-      - vim
+      - neovim
+      - python2-neovim
+      - python3-enovim
       - git
-      - tor
-      - zsh
-      - clang
-      - libevent-devel
-      - ncurses-devel
-      - bison
-      - openssl-devel
-      - urlview
-      - readline-devel
-      - libyaml-devel
-      - php
-      - php-mysql
-      - mysql
-      - libjpeg-devel
-      - python-firewall
-      - dnsmasq
-      - ImageMagick
-      - ImageMagick-devel
-      - httpie
       - the_silver_searcher
   tasks:
     - name: Install packages
@@ -58,21 +41,6 @@
       with_items:
         - postgresql-devel
         - postgresql-libs
-    - name: Ensure tor enabled
-      become: yes
-      service: name=tor enabled=yes state=started
     - name: Ensure postgresql enabled
       become: yes
       service: name=postgresql enabled=yes state=started
-    - name: Ensure .pxy TLD is configured in dnsmasq
-      become: yes
-      template: src=proxy.conf.j2 dest=/etc/dnsmasq.d/proxy.conf
-    - name: Ensure dnsmasq enabled
-      become: yes
-      service: name=dnsmasq.service enabled=yes state=started
-    - name: Open port 53/tcp
-      become: yes
-      firewalld: port=53/tcp permanent=yes state=enabled immediate=yes
-    - name: Open port 53/udp
-      become: yes
-      firewalld: port=53/udp permanent=yes state=enabled immediate=yes
