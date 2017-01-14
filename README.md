@@ -22,3 +22,10 @@ You should probably do these ol’ things on the server first
 ```
 dnf update
 ```
+
+After running the playbook initially, remember to:
+
+```
+root@localhost ~# passwd
+root@localhost ~# passwd emily
+```
