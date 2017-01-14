@@ -12,6 +12,7 @@
       - python3-neovim
       - git
       - the_silver_searcher
+      - xrdp
     ansible_python_interpreter: "/usr/bin/python3"
   tasks:
     - name: Ensure fastestmirror
@@ -60,3 +61,8 @@
     - name: Ensure postgresql enabled
       become: yes
       service: name=postgresql enabled=yes state=started
+    - name: Ensure xrdp enabled
+      become: yes
+      service: name=xrdp enabled=yes state=started
+    - name: Allow xrdp firewall access
+      firewalld: port=3389/tcp permanent=true state=enabled immediate=yes
