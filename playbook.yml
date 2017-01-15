@@ -14,6 +14,8 @@
       - the_silver_searcher
       - xrdp
       - sway
+      - haskell-platform
+      - ghc-gtk-devel
     ansible_python_interpreter: "/usr/bin/python3"
   tasks:
     - name: Ensure fastestmirror
