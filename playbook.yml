@@ -18,6 +18,8 @@
       - ghc-gtk-devel
     ansible_python_interpreter: "/usr/bin/python3"
   tasks:
+    - name: Set hostname
+      hostname: name=emfedora
     - name: Ensure fastestmirror
       become: yes
       lineinfile:
