@@ -36,6 +36,9 @@
     - name: Install system ansible
       become: yes
       pip: name=ansible
+    - name: Install pip2 neovim
+      become: yes
+      pip: name=neovim executable=pip2
     - name: Install virtualenv
       become: yes
       pip: name=virtualenv
